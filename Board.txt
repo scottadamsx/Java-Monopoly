@@ -1,0 +1,47 @@
+class Board {
+    private BoardSpace[] spaces;
+    
+    public Board() {
+        this.spaces = new BoardSpace[40];
+        this.spaces[0] = new BoardSpace(0, new Property("GO"));
+        this.spaces[1] = new BoardSpace(1, new Property("Mediterranian Av"));
+        this.spaces[2] = new BoardSpace(2, new Property("Community Chest"));
+        this.spaces[3] = new BoardSpace(3, new Property("Baltic Avenue"));
+        this.spaces[4] = new BoardSpace(4, new Property("Income Tax"));
+        this.spaces[5] = new BoardSpace(5, new Property("Reading Railroad"));
+        this.spaces[6] = new BoardSpace(6, new Property("Oriental Avenue"));
+        this.spaces[7] = new BoardSpace(7, new Property("Chance"));
+        this.spaces[8] = new BoardSpace(8, new Property("Vermont Avenue"));
+        this.spaces[9] = new BoardSpace(9, new Property("Connecticut Avenue"));
+        this.spaces[10] = new BoardSpace(10, new Property("Jail / Just Visiting"));
+        this.spaces[11] = new BoardSpace(11, new Property("St. Charles Place"));
+        this.spaces[12] = new BoardSpace(12, new Property("Electric Company"));
+        this.spaces[13] = new BoardSpace(13, new Property("States Avenue"));
+        this.spaces[14] = new BoardSpace(14, new Property("Virginia Avenue"));
+        this.spaces[15] = new BoardSpace(15, new Property("Pennsylvania Railroad"));
+        this.spaces[16] = new BoardSpace(16, new Property("St. James Place"));
+        this.spaces[17] = new BoardSpace(17, new Property("Community Chest"));
+        this.spaces[18] = new BoardSpace(18, new Property("Tennessee Avenue"));
+        this.spaces[19] = new BoardSpace(19, new Property("New York Avenue"));
+        this.spaces[20] = new BoardSpace(20, new Property("Free Parking"));
+        this.spaces[21] = new BoardSpace(21, new Property("Kentucky Avenue"));
+        this.spaces[22] = new BoardSpace(22, new Property("Chance"));
+        this.spaces[23] = new BoardSpace(23, new Property("Indiana Avenue"));
+        this.spaces[24] = new BoardSpace(24, new Property("Illinois Avenue"));
+        this.spaces[25] = new BoardSpace(25, new Property("B. & O. Railroad"));
+        this.spaces[26] = new BoardSpace(26, new Property("Atlantic Avenue"));
+        this.spaces[27] = new BoardSpace(27, new Property("Ventnor Avenue"));
+        this.spaces[28] = new BoardSpace(28, new Property("Water Works"));
+        this.spaces[29] = new BoardSpace(29, new Property("Marvin Gardens"));
+        this.spaces[30] = new BoardSpace(30, new Property("Go To Jail"));
+        this.spaces[31] = new BoardSpace(31, new Property("Pacific Avenue"));
+        this.spaces[32] = new BoardSpace(32, new Property("North Carolina Avenue"));
+        this.spaces[33] = new BoardSpace(33, new Property("Community Chest"));
+        this.spaces[34] = new BoardSpace(34, new Property("Pennsylvania Avenue"));
+        this.spaces[35] = new BoardSpace(35, new Property("Short Line Railroad"));
+        this.spaces[36] = new BoardSpace(36, new Property("Chance"));
+        this.spaces[37] = new BoardSpace(37, new Property("Park Place"));
+        this.spaces[38] = new BoardSpace(38, new Property("Luxury Tax"));
+        this.spaces[39] = new BoardSpace(39, new Property("Boardwalk"));
+    }
+}

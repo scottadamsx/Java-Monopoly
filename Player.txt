@@ -1,0 +1,52 @@
+class Player {
+    private String name;
+    private Int money;
+    private Property[] properties;
+    private BoardSpace location;
+
+    public Player(String name) {
+        this.name = name;
+        this.money = 1500;
+        this.properties = Property[28]
+        this.location = board.getSpace(0)
+    }
+
+    public BoardSpace getLocation() {
+        return this.location
+    }
+    
+    public void buy(property) {
+        this.properties.push(property)
+        this.subtractMoney(property.getPrice())
+        print(this.name added property.name to properties)
+    }
+
+    public void addMoney(int amount) {
+        this.money += amount  
+    }
+
+    public void subtractMoney(int amount) {
+        this.money -= amount
+    }
+
+}
+
+
+
+
+
+
+
+============================================================================================
+Player class will have fields:
+    - string name
+    - boardSpace location
+    - money
+    - properties
+
+    >>>responsibilities: 
+            - game.move(player, roll) => player.move(roll): returns boardSpace
+            - BoardSpace getLocation(): returns this.location
+            - void add(Property): adds the property to this.property; sets Property.owner to this;
+            - void addMoney(int): adds money to their wallet
+            - void subtractMoney(int): subtracts money from theit wallet

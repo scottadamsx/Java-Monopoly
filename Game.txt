@@ -1,0 +1,80 @@
+UPDATED PSEUDO
+===================================
+class Game {
+    private Creator creator;
+    private Board board;
+    private Player[] players;
+    private int numHouses;
+    private int numHotels;
+    private int CurrentPlayer;
+
+    public Game() {
+        this.creator = new Creator();
+        this.board = this.creator.createBoard();
+        this.players = this.creator.getPlayers();
+        this.numHouses = 32;
+        this.numHotels = 12;
+        this.currentPlayer = this.creator.getFirstPlayer();
+    }
+
+}
+
+class Creator {
+    public Creator() {
+    }
+
+    public Player[] getPlayers() {
+        > i = ask user how many players 
+        > based on that number create a Player[] called players
+        > for loop 
+            > go through and ask what the player i's name will be
+            > create Player object
+            > add to players[i]
+        > return the players
+    }
+
+    public Player getFirstPlayer(Player[]) {
+        > initialize highestRoll & highestPlayer
+        > for loop: for player in players
+            > roll for player 
+            > if player is the first in the List
+                > highestRoll = roll
+                > highestPlayer = player
+            > else 
+                > if player rolled higher
+                    > highestRoll = roll
+                    > highestPlayer = player
+                > else 
+                    > continue
+        return highestPlayer
+    }
+    
+    public Board createBoard() {
+        board = new Board()
+        return board
+    }
+
+
+}
+
+
+
+
+
+
+OG PSEUDO
+====================================================
+Game class will have feilds:
+    - Board board
+    - Array[Player] players
+    - int numHouse
+    - int currentPlayerIndex
+    
+    >>>responsiblities: 
+        - turn(currentPlayerIndex):
+            #grabs current player
+            # gets roll 
+            # calls player.Move(roll)
+            # game calls getAction(player)
+            # once they figure it out, end of turn menu which will loop until they end turn
+

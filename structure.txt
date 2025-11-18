@@ -1,0 +1,135 @@
+MONOPOLY IN JAVA OBJECT ORIENTED
+
+List of Objects:
+    - Player        *fields written* *methods not written*
+    - Board         *fields written* *methods not written*
+    - Property      *fields written* *methods not written*
+    - ColorSet      *fields written* *methods not written*
+    - boardSpace    *fields written* *methods not written*
+    - Game          *fields written* *methods not written*
+    - Chance
+    - Community Chest
+    - Dice
+
+    app will have a main menu, new game, inspect 
+
+
+
+
+
+Game class will have feilds:
+    - Board board
+    - Array[Player] players
+    - int numHouse
+    - int currentPlayerIndex
+    
+    >>>responsiblities: 
+        - turn(currentPlayerIndex):
+            #grabs current player
+            # gets roll 
+            # calls player.Move(roll)
+            # game calls getAction(player)
+            # once they figure it out, end of turn menu which will loop until they end turn
+
+
+
+
+        - checkForBankrupcy(): checks this.players; if any of them have money < 0, bankrupt them; returns null or Player;
+        - bankrup(Player): removes the player from this.players
+        - game.movePlayer(player, roll): calls Player.move(roll); Board.getLocation(player) which returns the property at the board space;
+        - switchPlayer(currentPlayerIndex)
+
+            |
+            |
+            V
+
+Player class will have fields:
+    - string name
+    - boardSpace location
+    - money
+    - properties
+
+    >>>responsibilities: 
+            - game.move(player, roll) => player.move(roll): returns boardSpace
+            - BoardSpace getLocation(): returns this.location
+            - void add(Property): adds the property to this.property; sets Property.owner to this;
+            - void addMoney(int): adds money to their wallet
+            - void subtractMoney(int): subtracts money from theit wallet
+
+BoardSpace class will have fields:
+    - int location
+    - Property property
+
+    >>>responsiblities: 
+            - getProperty(int): gets this.property; returns this.property.getAction();
+
+            |
+            |
+            V
+
+Board class will have feilds:
+    - array[boardSpace] spaces
+    - ColorSet monopolies
+
+    >>>responsiblities: 
+            - getSpace(int): returns this.spaces[int]
+
+
+            |
+            |
+            V
+   
+ColorSet class will have feilds: 
+    - string name
+    - properties 
+
+    >>>responsibilities:
+            - house logic
+            - ask if playerOwns, returns player or null
+
+
+            |
+            |
+            V
+
+Property class will have fields:
+    - string name
+    - BoardSpace location
+    - int price
+    - housePrice
+    - ColorSet ColorSet
+    - Player owner
+    - int houses
+    - int morgagePrice
+
+    >>>responsiblities: 
+            - Property.getRent()
+
+    Property responsibilities:
+        - getAction(): check if owner; if owner, pay rent, if not getOwner;
+        - get number of houses; returns this.houses()
+        - get rent(): returns this.rent
+        - morgage(): gets owner and subtracts this.morgagePrice to this.owner.money & sets rent to 0
+
+
+
+
+
+
+
+
+
+
+questions:
+    - what is this objects responsiblities
+    - every class should be responsible for one thing
+    - make ui property
+
+
+
+
+
+
+
+
+
