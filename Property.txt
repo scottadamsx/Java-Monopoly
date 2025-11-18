@@ -1,0 +1,44 @@
+class Property {
+    private String name;
+    private Int price;
+    private ColorSet colorSet;
+    private Player owner;
+    private int houses;
+    private int morgagePrice;
+
+    public Property(String name, int price, 
+                    ColorSet colorSet, int morgagePrice) {
+        this.name = name;
+        this.price = price;
+        this.colorSet = colorSet;
+        this.owner = null;
+        this.houses = 0;
+        this.morgagePrice = morgagePrice;
+    }
+
+    public void morgage() {
+        > subtract morgage value from owner
+        > sent rent to 0
+
+    }
+
+}
+
+
+
+========================================================
+Property class will have fields:
+    - string name
+    - int price
+    - housePrice
+    - ColorSet ColorSet
+    - Player owner
+    - int houses
+    - int morgagePrice
+
+    Property responsibilities:
+        - getAction(): check if owner; if owner, pay rent, if not getOwner;
+        - get number of houses; returns this.houses()
+        - get rent(): returns this.rent
+        - morgage(): gets owner and subtracts this.morgagePrice to this.owner.money & sets rent to 0
+

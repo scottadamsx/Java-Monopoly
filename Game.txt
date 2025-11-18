@@ -14,9 +14,47 @@ class Game {
         this.players = this.creator.getPlayers();
         this.numHouses = 32;
         this.numHotels = 12;
-        this.currentPlayer = this.creator.getFirstPlayer();
+        this.currentPlayer = this.creator.getFirstPlayer() ;
+    }
+    public void start() {
+        > while there is more than one player
+            > grab current player (this.currentPlayer)
+            > current player will take turn
+            > call taketurn()
+            > after turn call  afterTurnMenu()
+            > when they exit that call player = switchPlayer()
+        > announce winner!!
+        > return winner
     }
 
+    public void takeTurn(player) {
+        > initialize int doublesCount = 0 ;
+        > init Bool doubles
+
+        > do {
+            > player rolls 
+            > checks if its doubles 
+            > if it is 
+                > doubles = true
+                > doublesCount += 1
+                    > if doublesCount == 3
+                        > put them in jail without taking their turn
+                        > break from while loop
+            > else
+                > move them to the new spot 
+                > grab the property
+                > pay rent if owned
+                > if not let em buy it  
+        } while (doubles == true)
+        return
+    }
+     public afterTurnMenu() {
+        > while true;
+            > print menu with a few options (buy houses, sell houses, check properties, make trade) 
+            > ask for option
+            > if else chain for each option with break as the final one
+        return
+     }
 }
 
 class Creator {

@@ -32,21 +32,3 @@ class Player {
 }
 
 
-
-
-
-
-
-============================================================================================
-Player class will have fields:
-    - string name
-    - boardSpace location
-    - money
-    - properties
-
-    >>>responsibilities: 
-            - game.move(player, roll) => player.move(roll): returns boardSpace
-            - BoardSpace getLocation(): returns this.location
-            - void add(Property): adds the property to this.property; sets Property.owner to this;
-            - void addMoney(int): adds money to their wallet
-            - void subtractMoney(int): subtracts money from theit wallet

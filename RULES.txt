@@ -1,0 +1,6 @@
+// players will take turns rolling 
+
+// players can only add houses if they have a complete colorSet
+
+// players can only add a house to a property if there is <5
+
