@@ -5,14 +5,16 @@ public class Creator {
         this.input = new Scanner(System.in);
     }
 
-    public Player[] getPlayers() {
+    public Player[] getPlayers(Board board) {
         System.out.println("How many players are playing?:");
         int numPlayers = this.input.nextInt();
+        System.out.println("number of players:" + numPlayers);
         Player[] players = new Player[numPlayers];
         for (int i = 0; i < numPlayers; i++) {
-            System.out.println("What is player " + i + "'s name: ");
-            String name = this.input.nextLine();
+            System.out.println("What is player " + (i+1) + "'s name: ");
+            String name = this.input.next();
             Player player = new Player(name);
+            player.setLocation(board.getBoardSpace(0));
             players[i] = player;
         }
         return players;

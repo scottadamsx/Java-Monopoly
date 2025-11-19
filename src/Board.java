@@ -45,4 +45,7 @@ public class Board {
         spaces[38] = new BoardSpace(38, new Property("Luxury Tax", 0, null, 0));
         spaces[39] = new BoardSpace(39, new Property("Boardwalk", 400, ColorSet.DARK_BLUE, 200));
     }
+    public BoardSpace getBoardSpace(int location) {
+        return spaces[location];
+    }
 }

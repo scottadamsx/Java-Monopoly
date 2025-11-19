@@ -17,6 +17,9 @@ public class Property {
     public int getPrice() {
         return this.price;
     }
+    public String getName() {
+        return name;
+    }
 
     public void morgage() {
     // subtract morgage value from owner

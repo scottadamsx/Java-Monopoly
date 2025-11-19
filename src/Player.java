@@ -10,10 +10,18 @@ public class Player {
         this.properties = new Property[28];
         this.location = null;
     }
-
-    public BoardSpace getLocation() {
-        return this.location;
+    public String getLocationName() {
+        return location.getName();
     }
+
+    public int getLocation() {
+        return location.getLocation();
+    }
+    public void setLocation(BoardSpace boardSpace) {
+        location = boardSpace;
+    }
+
+    
     
     public void buy(Property property) {
         this.properties[0]= property;

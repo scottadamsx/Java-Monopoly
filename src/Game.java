@@ -10,7 +10,7 @@ public class Game {
     public Game() {
         this.creator = new Creator();
         this.board = this.creator.createBoard();
-        this.players = this.creator.getPlayers();
+        this.players = this.creator.getPlayers(board);
         this.numHouses = 32;
         this.numHotels = 12;
         this.currentPlayerIndex = 0;
@@ -32,6 +32,13 @@ public class Game {
         System.out.println("Winner is " + winner.getName() + "!");
         return winner;
     }
+    public void movePlayer(Player player, int roll) {
+        int location = player.getLocation(); 
+        location += roll;
+        BoardSpace newLocation = board.getBoardSpace(location);
+        player.setLocation(newLocation);
+        System.out.println(player.getName() + " moved to " + player.getLocationName());
+    }
 
     private void takeTurn(Player player) {
         int doublesCount = 0;
@@ -41,7 +48,10 @@ public class Game {
             // Player rolls dice
             int die1 = die.roll();
             int die2 = die.roll();
-            System.out.println(player.getName() + " rolled " + die1 + " and " + die2);
+            int playerRoll = die1 + die2;
+            System.out.println(player.getName() + " rolled " + die1 + " and " + die2 + " / Total: " + playerRoll);
+            movePlayer(player, playerRoll);
+            
 
             // Check for doubles
             doubles = (die1 == die2);

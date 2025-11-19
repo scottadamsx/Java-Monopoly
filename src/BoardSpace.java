@@ -6,4 +6,13 @@ public class BoardSpace {
         this.location = location;
         this.property = property;
     }
+    public int getLocation() {
+        return location;
+    }
+    public Property getProperty() {
+        return property;
+    }
+    public String getName() {
+        return property.getName();
+    }
 }
