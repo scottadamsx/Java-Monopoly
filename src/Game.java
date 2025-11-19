@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Game {
     private Creator creator;
     private Board board;
@@ -6,15 +7,18 @@ public class Game {
     private int numHotels;
     private int currentPlayerIndex;
     private Die die;
+    private Scanner input;
 
     public Game() {
-        this.creator = new Creator();
+        this.input = new Scanner(System.in);
+        this.creator = new Creator(input);
         this.board = this.creator.createBoard();
         this.players = this.creator.getPlayers(board);
         this.numHouses = 32;
         this.numHotels = 12;
         this.currentPlayerIndex = 0;
         this.die = new Die();
+        
     }
 
     public Player start() {
@@ -42,17 +46,23 @@ public class Game {
 
     private void takeTurn(Player player) {
         int doublesCount = 0;
-        boolean doubles;
+        boolean doubles = false;
 
         do {
             // Player rolls dice
+             // empties the scanner before aksing for enter
+            System.out.println("press ENTER to roll the dice");
+            String doRoll = input.nextLine();
+
+
+            if (doRoll.isEmpty()) {
             int die1 = die.roll();
             int die2 = die.roll();
             int playerRoll = die1 + die2;
             System.out.println(player.getName() + " rolled " + die1 + " and " + die2 + " / Total: " + playerRoll);
             movePlayer(player, playerRoll);
+            player.getAction(input);
             
-
             // Check for doubles
             doubles = (die1 == die2);
             if (doubles) {
@@ -66,13 +76,14 @@ public class Game {
                 // TODO: move player by die1 + die2
                 // TODO: check property, pay rent or allow purchase
             }
-
-        } while (doubles);
-    }
+        }     
+    } 
+    while (doubles);
+}
 
     private void afterTurnMenu(Player player) {
         boolean exitMenu = false;
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        
 
         while (!exitMenu) {
             System.out.println("Choose an option:");
@@ -80,9 +91,9 @@ public class Game {
             System.out.println("2. Sell Houses");
             System.out.println("3. Check Properties");
             System.out.println("4. Make Trade");
-            System.out.println("5. End Turn");
+            System.out.println("[ENTER]. End Turn");
 
-            int choice = scanner.nextInt();
+            int choice = input.nextInt();
             switch (choice) {
                 case 1:
                     // TODO: implement buy houses

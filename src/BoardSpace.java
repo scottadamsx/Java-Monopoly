@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class BoardSpace {
     private int location;
     private Property property;
@@ -15,4 +16,8 @@ public class BoardSpace {
     public String getName() {
         return property.getName();
     }
+    public void getAction(Scanner input, Player player) {
+        property.getAction(input, player);
+    }
+
 }

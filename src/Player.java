@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Player {
     private String name;
     private int money;
@@ -12,6 +13,16 @@ public class Player {
     }
     public String getLocationName() {
         return location.getName();
+    }
+    public void getAction(Scanner input) {
+        location.getAction(input, this);
+    }
+    public void payRent(Property property) {
+        Player owner = property.getOwner();
+        int rent = property.getRent();
+        subtractMoney(rent);
+        owner.addMoney(rent);
+        System.out.println(getName() + " paid " + owner.getName() + " " + rent + " in rent!");
     }
 
     public int getLocation() {

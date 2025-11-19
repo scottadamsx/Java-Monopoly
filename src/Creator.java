@@ -1,13 +1,14 @@
 import java.util.Scanner;
 public class Creator {
     private Scanner input; 
-   public Creator() {
-        this.input = new Scanner(System.in);
+   public Creator(Scanner input) {
+        this.input = input;
     }
 
     public Player[] getPlayers(Board board) {
         System.out.println("How many players are playing?:");
         int numPlayers = this.input.nextInt();
+        input.nextLine();
         System.out.println("number of players:" + numPlayers);
         Player[] players = new Player[numPlayers];
         for (int i = 0; i < numPlayers; i++) {
