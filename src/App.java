@@ -15,7 +15,6 @@ public class App {
         System.out.println("Hello, World!");
         Game game = new Game();
         game.start();
-
     }
 }
 

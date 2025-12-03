@@ -1,25 +1,87 @@
 import java.util.Scanner;
 public class Game {
+    private Scanner input;
     private Creator creator;
     private Board board;
+    private Deck chanceDeck;
+    private Deck chestDeck;
     private Player[] players;
     private int numHouses;
     private int numHotels;
     private int currentPlayerIndex;
     private Die die;
-    private Scanner input;
 
     public Game() {
         this.input = new Scanner(System.in);
         this.creator = new Creator(input);
         this.board = this.creator.createBoard();
         this.players = this.creator.getPlayers(board);
+        CardManager.init(this, this.input);
         this.numHouses = 32;
         this.numHotels = 12;
         this.currentPlayerIndex = 0;
         this.die = new Die();
-        
     }
+    public Board getBoard() {
+        return this.board;
+    }
+
+    /**
+     * Move a player to a specific board index.
+     * Pays GO $200 if the move passes GO (index wraps around).
+     * This DOES NOT automatically trigger the landed-on space's action
+     * (call that separately if you want), to avoid recursion from cards.
+     */
+    public void movePlayerToIndex(Player player, int newIndex) {
+        if (player == null) return;
+
+        final int BOARD_SIZE = 40;
+        int currentIndex;
+        try {
+            currentIndex = player.getLocation();
+        } catch (NullPointerException e) {
+            currentIndex = 0;
+        }
+
+        boolean passedGo = newIndex < currentIndex; // wrapped around
+        if (passedGo) {
+            player.addMoney(200);
+            System.out.println(player.getName() + " passed GO and collected $200!");
+        }
+
+        int normalized = ((newIndex % BOARD_SIZE) + BOARD_SIZE) % BOARD_SIZE;
+        BoardSpace newSpace = board.getBoardSpace(normalized);
+        player.setLocation(newSpace);
+
+        System.out.println(player.getName() + " moved to space " + normalized + " (" + newSpace.getName() + ").");
+    }
+
+    /**
+     * Send player to jail (index 10). Mark them as in-jail and reset jail-turns.
+     * You should handle later logic for how to get out of jail (roll doubles / pay / card).
+     */
+    public void sendPlayerToJail(Player player) {
+        if (player == null) return;
+
+        int jailIndex = 10; // matches your Board setup
+        BoardSpace jailSpace = board.getBoardSpace(jailIndex);
+        player.setLocation(jailSpace);
+
+        // mark player as in jail
+        player.setInJail(true);
+        player.setJailTurns(0);
+
+        System.out.println(player.getName() + " was sent to Jail (space " + jailIndex + ").");
+    }
+
+    // deck getters so Property.getAction or Card.apply can access them
+    public Deck getChanceDeck() {
+        return this.chanceDeck;
+    }
+    public Deck getChestDeck() {
+        return this.chestDeck;
+    }
+
 
     public Player start() {
         while (players.length > 1) {
@@ -75,7 +137,7 @@ public class Game {
 
     private void waitForEnterToRoll() {
     while (true) {
-        System.out.println("Press ENTER to roll the dice (press only Enter).");
+        System.out.println(players[currentPlayerIndex].getName() + "'s turn!\nPress ENTER to roll the dice.");
         String line = input.nextLine();
         if (line == null) {
             return; 
@@ -83,6 +145,7 @@ public class Game {
         if (line.trim().isEmpty()) {
             return; 
         }
+
         System.out.println("Please press only ENTER to roll. (If you typed something earlier, that input was consumed.)");
         }
     }
@@ -102,15 +165,23 @@ public class Game {
 
             movePlayer(player, playerRoll);
 
-            // Make sure Player.getAction uses nextLine() internally too
+            // perform landing action (may send to jail, draw cards, etc.)
             player.getAction(input);
+
+            // If the landing/action sent the player to jail, the turn ends immediately.
+            if (player.isInJail()) {
+                // reset doubles so the loop won't continue
+                doubles = false;
+                break;
+            }
 
             doubles = (die1 == die2);
             if (doubles) {
                 doublesCount++;
                 if (doublesCount == 3) {
                     System.out.println(player.getName() + " rolled doubles 3 times and goes to jail!");
-                    // TODO: send player to jail
+                    // send player to jail (use Game helper)
+                    sendPlayerToJail(player);
                     break;
                 } else {
                     System.out.println("Doubles! " + player.getName() + " gets another roll.");
@@ -140,7 +211,7 @@ public class Game {
                     // TODO: implement sell houses
                     break;
                 case "3":
-                    // TODO: display player properties
+                    player.showProperties();
                     break;
                 case "4":
                     // TODO: implement trading
